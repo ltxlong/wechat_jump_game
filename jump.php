@@ -232,7 +232,7 @@ function pressToJump($distance) {
 function findStart() {
 	global $image;
     
-	$piece_y_max = 0;
+    $piece_y_max = 0;
     $piece_x_sum = 0;
     $piece_x_count = 0;
 	$width  = imagesx($image);
@@ -421,9 +421,9 @@ for ($id = 0; ; $id++) {
 	echo sprintf("(%d, %d) -> (%d, %d) ", $piece_x, $piece_y, $board_x, $board_y);
 
     //imagefilledellipse图像描点,用于测试（算坐标的算法）,要在当前目录新建一个名为screen的文件夹
-	//imagefilledellipse($image, $piece_x, $piece_y, 10, 10, 0xFF0000);
-	//imagefilledellipse($image, $board_x, $board_y, 10, 10, 0xFF0000);
-	//imagepng($image, sprintf("screen/%05d.png", $id));
+    //imagefilledellipse($image, $piece_x, $piece_y, 10, 10, 0xFF0000);
+    //imagefilledellipse($image, $board_x, $board_y, 10, 10, 0xFF0000);
+    //imagepng($image, sprintf("screen/%05d.png", $id));
 
     // 计算两点距离并跳一跳
 	$distance = sqrt(pow($board_x - $piece_x, 2) + pow($board_y - $piece_y, 2));
