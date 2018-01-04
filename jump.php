@@ -232,9 +232,9 @@ function pressToJump($distance) {
 function findStart() {
 	global $image;
     
-    $piece_y_max = 0;
-    $piece_x_sum = 0;
-    $piece_x_count = 0;
+	$piece_y_max = 0;
+	$piece_x_sum = 0;
+	$piece_x_count = 0;
 	$width  = imagesx($image);
 	$height = imagesy($image);
 	$piece_base_height_1_2 = PIECE_BASE_HEIGHT_1_2;//二分之一的棋子底座高度，请自己根据实际情况调节
@@ -373,7 +373,7 @@ function findTarget() {
 	}
 
 	//如果上一跳命中中间，则下个目标中心会出现r245 g245 b245的点，利用这个属性弥补上一段代码可能存在的判断错误
-    //若上一跳由于某种原因没有跳到正中间，而下一跳恰好有无法正确识别花纹，则有可能游戏失败，由于花纹面积通常比较大，失败概率较低
+	//若上一跳由于某种原因没有跳到正中间，而下一跳恰好有无法正确识别花纹，则有可能游戏失败，由于花纹面积通常比较大，失败概率较低
 	for ($y = $touch_y_first; $y < $touch_y_first + 200; $y++) {
 		$pixel = getRGB($board_x, $y);
 		if (abs($pixel[0] - 245) + abs($pixel[1] - 245) + abs($pixel[2] - 245) == 0) {
