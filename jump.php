@@ -3,7 +3,7 @@
 define('PRESS_COEFFICIENT', 1.392);//press_coefficient ：长按的时间系数，请自己根据实际情况调节
 define('PIECE_BASE_HEIGHT_1_2', 20);//piece_base_height_1_2 : 二分之一的棋子底座高度，请自己根据实际情况调节
 define('PIECE_BODY_WIDTH', 70);//piece_body_width ：棋子底座宽度，比截图中量到的稍微大一点比较安全，请自己根据实际情况调节
-define('SLEEP_TIME', 2);//停留时间，不用调（有的盒子上面停留2秒会额外加5~30分。如果停留时间与VAC有关，可以改为大于2的随机数）
+define('SLEEP_TIME', mt_rand(20,25)/10);//停留时间2秒，不用调（有的盒子上面停留2秒会额外加5~30分。如果停留时间与VAC有关，可以改为大于2的随机数，此时唯一的干扰是音乐盒的音符，小概率）。
 
 /**
  * # === 思路 ===
@@ -218,7 +218,7 @@ function pressToJump($distance) {
 	$press_time = max($press_time, 200);//设置 200 ms 是最小的按压时间
 	$press_time = intval($press_time);
 	//用随机数尝试绕过VAC
-	$press_cmd = 'adb shell input swipe ' . rand(500, 520) . ' ' . rand(1600, 1620) . ' ' . rand(500, 520) . ' ' . rand(1600, 1621) . ' ' . $press_time;//rand(参数值，参数值+20) 。初始位置按压的位置 500 1600 500 1601（这个位置对应的机型会自动重复开始游戏）
+	$press_cmd = 'adb shell input swipe ' . mt_rand(500, 520) . ' ' . mt_rand(1600, 1620) . ' ' . mt_rand(500, 520) . ' ' .mt_rand(1600, 1621) . ' ' . $press_time;//rand(参数值，参数值+20) 。初始位置按压的位置 500 1600 500 1601（这个位置对应的机型会自动重复开始游戏）
 	echo sprintf("time: %f\n", $press_time);
 
 	system($press_cmd);
@@ -260,7 +260,7 @@ function findStart() {
 
 		}
 	}
-    if($piece_x_count == 0) exit('Please open the game page first and configure swipe correctly!');
+	if($piece_x_count == 0) exit('Please open the game page first and configure swipe correctly!');
 	$piece_x = intval($piece_x_sum / $piece_x_count);//棋子的底部上一点的位置是棋子最宽的位置，取平均值即为中点
 	$piece_y = $piece_y_max - $piece_base_height_1_2; //上移棋子底盘高度的一半
 
