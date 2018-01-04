@@ -260,7 +260,7 @@ function findStart() {
 
 		}
 	}
-
+    if($piece_x_count == 0) exit('Please open the game page first and configure swipe correctly!');
 	$piece_x = intval($piece_x_sum / $piece_x_count);//棋子的底部上一点的位置是棋子最宽的位置，取平均值即为中点
 	$piece_y = $piece_y_max - $piece_base_height_1_2; //上移棋子底盘高度的一半
 
